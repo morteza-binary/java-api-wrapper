@@ -1,9 +1,11 @@
 package com.binary.api.utils;
 
 import com.binary.api.models.requests.ForgetAllResponse;
+import com.binary.api.models.requests.RequestBase;
 import com.binary.api.models.requests.SellContractForMultipleAccountsRequest;
 import com.binary.api.models.requests.TransferBetweenAccountsRequest;
 import com.binary.api.models.responses.*;
+import com.google.gson.JsonObject;
 
 import java.lang.reflect.Type;
 
@@ -150,5 +152,13 @@ public class ClassUtils {
                 return TransferBetweenAccountsResponse.class;
         }
         return null;
+    }
+
+    public static boolean checkResponseUUID(RequestBase request, ResponseBase response) {
+
+        String requestUUID  = request.getUUID();
+        String responseUUID = ((RequestBase) response.getRequest()).getUUID();
+
+        return requestUUID.equals(responseUUID);
     }
 }

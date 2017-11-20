@@ -108,6 +108,7 @@ public class ApiWrapper {
                 .subscribe(
                 o -> {
                     if(o.isOpened()) {
+                        request.setUUID();
                         this.requestEmitter.onNext(gson.toJson(request));
 
                     }
@@ -119,7 +120,8 @@ public class ApiWrapper {
                     ResponseBase response = gson.fromJson(o, request.getResponseType());
 
                     //FIXME Add req_id to the condition if it is exist
-                    return request.getResponseType() == ClassUtils.getClassType(response.getType());
+//                    return request.getResponseType() == ClassUtils.getClassType(response.getType());
+                    return ClassUtils.checkResponseUUID(request, response);
                 })
                 .map(o -> {
 //                    ResponseBase response = gson.fromJson(o, request.getResponseType());
