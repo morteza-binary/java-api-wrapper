@@ -124,8 +124,8 @@ public class ApiWrapper {
                     return ClassUtils.checkResponseUUID(request, response);
                 })
                 .map(o -> {
-//                    ResponseBase response = gson.fromJson(o, request.getResponseType());
-                    return gson.fromJson(o, request.getResponseType());
+                    ResponseBase response = gson.fromJson(o, request.getResponseType());
+                    return gson.fromJson(o, ClassUtils.getClassType(response.getType()));
                 });
     }
 
