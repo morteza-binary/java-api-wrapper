@@ -49,8 +49,8 @@ public class ClassUtils {
             case "states_list":
                 return StatesListResponse.class;
             case "candles":
-                return TickHistoryResponse.class;
             case "history":
+            case "ticks_history":
                 return TickHistoryResponse.class;
             case "time":
                 return TimeResponse.class;
